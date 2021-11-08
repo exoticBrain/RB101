@@ -1,0 +1,13 @@
+en: 
+  welcome: "
+  **************************************************\n
+        \tWelcome to the Car Loan Calculator\n
+  **************************************************\n"
+  name: "Would you like to enter your name"
+  data: "Great! You have to enter some information\n
+        1) the loan amount\n
+        2) the interest rate\n
+        3) the loan duration
+        "
+  end: "After calculating your Car Laon this is the result"
+  result: "Your Monthly Mortgage Payment is : "

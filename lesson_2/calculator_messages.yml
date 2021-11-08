@@ -1,0 +1,33 @@
+
+en:
+  welcome: "Hello first of all what's your name"
+  start: "Welcome"
+  enter_number: "Enter the number"
+  operator_type: "
+    Which operator you would like to perform\n
+    +) add\n
+    -) substarct\n
+    *) multiply\n
+    /) divide
+  "
+  valid_operator: "It looks like this is not a valid operator"
+  zero: "Division by zero is undefined"
+  valid_number: "It looks like this is not a valid number!"
+  retry: "Would you like to make a calculation again? Press (Y)"
+  end: "Thank you!"
+fr:
+  welcome: "Bonjour tout d'abord quel est votre nom"
+  start: "Bienvenue"
+  enter_number: "Entrez le numéro"
+  operator_type: "
+    Quel opérateur souhaitez-vous effectuer\n
+    +) ajouter\n
+    -) soustraction\n
+    *) multiplier\n
+    /) diviser
+  "
+  valid_operator: "Il semble que ce ne soit pas un opérateur valide"
+  zero: "La division par zéro n'est pas définie"
+  valid_number: "Il semble que ce n'est pas un numéro valide !"
+  retry: "Souhaitez-vous refaire un calcul ? Appuyez sur (Y)"
+  end: "Merci!"
