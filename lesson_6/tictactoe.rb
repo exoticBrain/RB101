@@ -1,6 +1,5 @@
 require_relative 'my_methods_ttt.rb'
 require 'colorize'
-require 'pry-byebug'
 
 RULES = <<-MSG
  _-------------------------------------------------------------------_
