@@ -10,6 +10,7 @@ RULES = <<-MSG
 ^---------------------------------------------------------------------^
 MSG
 
+play_flag = nil
 VALID_YES_OR_NO = {
   yes: ['y', 'yes', 'yep'],
   no: ['n', 'no', 'nop']
@@ -55,20 +56,8 @@ loop do
     if turn && level
       turn, level = start_game turn, level
     else
-      clear_screen
-      menu_title "Welcome to the Game"
-      play = default_game?
-
-      if play
-        turn, level = start_game
-      else
-        prompt "Go back and fill in the required infos ".light_red + \
-               "(Level and Turn)".light_yellow
-        new_line
-        prompt "Press any key to go back!!"
-        STDIN.gets
-        next
-      end
+      play = play_default(turn, level)
+      play ? play_flag { turn, level = play} : next
     end
 
     clear_screen

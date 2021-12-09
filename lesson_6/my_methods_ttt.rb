@@ -165,7 +165,7 @@ def invalid_choice
 end
 
 def default_game?
-  prompt "Would you like to play the default game? ('Y' or 'N')".light_blue
+  print_default_game
   default = nil
 
   loop do
@@ -183,6 +183,39 @@ end
 def rounds_you_wish_to_play
   prompt "How many rounds do you wish to play?".light_blue
   take_number
+end
+
+def print_default_game
+  clear_screen
+  menu_title "Welcome to the Game"
+  prompt "Would you like to play the default game? ('Y' or 'N')".light_blue
+end
+
+def go_back_to_menu
+  prompt "Go back and fill in the required infos ".light_red + \
+         "(Level and Turn)".light_yellow
+  new_line
+  prompt "Press any key to go back!!"
+  STDIN.gets
+end
+
+def play_default(turn, level)
+  play = default_game?
+
+  if play
+    turn, level = start_game
+    play_this_game = true
+  else
+    go_back_to_menu
+    play_this_game = false
+  end
+
+  return false unless play_this_game
+  [turn, level]
+end
+
+def play_flag
+  yield
 end
 
 # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Layout/LineLength
