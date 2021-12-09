@@ -234,6 +234,16 @@ def display_players(player_cards, player_score, dealer_cards, dealer_score)
   load_program '*', LOAD_CHOICE
 end
 
+def winner(rounds_target)
+  new_line
+
+  if ROUNDS[:player] == rounds_target
+    prompt "#{PLAYER} won! #{rounds_target} times in a row.".light_yellow
+  else
+    prompt "#{DEALER} won! #{rounds_target} times in a row.".light_yellow
+  end
+end
+
 # rubocop:disable Metrics/AbcSize, Layout/LineLength
 def black_jack(turn)
   sleep 1
@@ -359,16 +369,6 @@ def game_title
   puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".underline.light_yellow
 end
 # rubocop:enable Metrics/AbcSize, Layout/LineLength
-
-def winner(rounds_target)
-  new_line
-
-  if ROUNDS[:player] == rounds_target
-    prompt "#{PLAYER} won! #{rounds_target} times in a row.".light_yellow
-  else
-    prompt "#{DEALER} won! #{rounds_target} times in a row.".light_yellow
-  end
-end
 
 def exit_game
   sleep 1
