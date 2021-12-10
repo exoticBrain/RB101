@@ -36,6 +36,9 @@ GAME_LOAD = 63
 ACE_VALUE = 11
 JACK_QUEEN_KING = 10
 
+CARD = 0
+CARD_FACE = 1
+CARD_SUIT = 0
 VALID_CHOICE = {
   stay: ['s', 'stay', 'sta', 'st'],
   hit: ['h', 'hi', 'hit']
@@ -68,10 +71,7 @@ loop do
     player_cards = initialize_card
     dealer_cards = initialize_card
 
-    2.times do
-      player_cards << deck.pop
-      dealer_cards << deck.pop
-    end
+    deal_initial_hands player_cards, dealer_cards, deck
 
     dealer_score = total dealer_cards
     player_score = total player_cards

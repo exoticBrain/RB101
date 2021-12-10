@@ -30,6 +30,7 @@ def ask_for_name
   loop do
     answer = take_string.capitalize!
     break if answer.is_a?(String)
+    prompt "INVALIDE NAME!!".light_red
   end
 
   answer
@@ -59,7 +60,7 @@ def display_rules
   clear_screen
   puts RULES.light_blue
   new_line
-  prompt "Press any key to go Back".light_magenta
+  prompt "Press [ENTER] key to go Back".light_magenta
   STDIN.gets
   clear_screen
 end
@@ -72,6 +73,13 @@ def initialize_deck
   SUITS.product(VALUES).shuffle
 end
 
+def deal_initial_hands(player_cards, dealer_cards, deck)
+  2.times do
+    player_cards << deck.pop
+    dealer_cards << deck.pop
+  end
+end
+
 def rounds
   initialize_score
   prompt "How many rounds You wanna play?".light_green
@@ -81,7 +89,9 @@ def rounds
     print ">> ".light_magenta
     answer = gets.chomp.to_i
 
-    break if answer.is_a?(Integer) && answer != 0
+    break if answer.is_a?(Integer) && answer > 0
+    prompt "INVALID CHOICE!!".light_red
+    prompt "=> Choose a number (greather than 0)".bold.italic.light_magenta
   end
 
   answer
@@ -93,8 +103,8 @@ def initialize_score
 end
 
 def display_dearl_hand(dealer_cards)
-  puts "-> Dealer's hand : ".bold + "#{dealer_cards[0][1]}" \
-  " #{SUIT[dealer_cards[0][0]]} and ?".light_blue
+  puts "-> Dealer's hand : ".bold + "#{dealer_cards[CARD][CARD_FACE]}" \
+  " #{SUIT[dealer_cards[CARD][CARD_SUIT]]} and ?".light_blue
 end
 
 def hit_or_stay
@@ -163,17 +173,21 @@ def dealer_turn(dealer_cards, dealer_score, deck)
   dealer_score
 end
 
+def convert(value)
+  if value == "A"
+    ACE_VALUE
+  elsif value.to_i == 0
+    JACK_QUEEN_KING
+  else
+    value.to_i
+  end
+end
+
 def total(cards)
-  values = cards.map { |card| card[1] }
+  values = cards.map { |card| card[CARD_FACE] }
   sum = 0
   values.each do |value|
-    sum += if value == "A"
-             ACE_VALUE
-           elsif value.to_i == 0
-             JACK_QUEEN_KING
-           else
-             value.to_i
-           end
+    sum += convert value
   end
   values.select { |value| value == "A" }.count.times do
     sum -= 10 if sum > FINAL_TARGET
